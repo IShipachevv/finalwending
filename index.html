@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу — Илья и Кристина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Marck+Script&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --text-main: #2f241f;
+            --gray-light: #fff6ed;
+            --accent: #8f6b5b;
+            --accent-soft: #d9c3b8;
+            --line: rgba(143, 107, 91, 0.22);
+            --shadow: 0 15px 35px rgba(79, 51, 39, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            background: #d6d0ca;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--bg-white);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            padding: 20px 24px;
+            text-align: center;
+            position: relative;
+            background-color: var(--bg-white);
+            z-index: 2;
+        }
+
+        .intro-text {
+            margin: 20px 0 0 0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ПАРАЛЛАКС ОБЛОЖКА */
+        .hero {
+            height: 90vh;
+            min-height: 600px;
+            position: relative;
+            color: white;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 10;
+            left: 0;
+            bottom: 45px;
+            width: 100%;
+            height: 120%; /* Запас для смещения вниз */
+            background: #efe2d8 url('sourse/main_photo.jpg') center/cover no-repeat;
+            will-change: transform;
+        }
+
+        .hero-overlay {
+            margin-bottom: 365px;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 4px 80px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            color: #000000;
+
+            margin: 0 0 50px 0;
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-date {
+            color: #000000;
+            margin: 0;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .title-serif {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+        }
+
+        .section-kicker {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+        }
+
+        /* ЖУРНАЛЬНАЯ ФОТОСЕТКА С ЭФФЕКТОМ ГЛУБИНЫ */
+        .photo-grid-three {
+            display: flex;
+            gap: 12px;
+            height: 260px;
+            margin-top: 40px;
+        }
+
+        .photo-placeholder {
+            flex: 1;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), flex 0.5s ease;
+        }
+
+        .photo-placeholder:hover {
+            flex: 1.3;
+            transform: translateY(-5px);
+        }
+
+        .photo-1 { background-image: url('sourse/onchee.jpg'); background-color: #efe2d8; }
+        .photo-2 { background-image: url('sourse/on_erth.jpg'); background-color: #caa895; }
+        .photo-3 { background-image: url('sourse/botom.jpg'); background-color: #d9c5b7; }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(47, 36, 31, 0.85), rgba(47, 36, 31, 0.1));
+            z-index: 1;
+        }
+
+        .photo-inner-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8px;
+            z-index: 2;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .photo-inner-text span {
+            display: block;
+            font-size: 0.6rem;
+            opacity: 0.8;
+        }
+
+        .photo-inner-text strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        /* КАЛЕНДАРЬ И ОЖИВАЮЩЕЕ СЕРДЦЕ */
+        .calendar-section {
+            background: var(--bg-white);
+            padding: 40px 24px 70px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .calendar-caption {
+            max-width: 290px;
+            margin: 0 auto 35px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .calendar-card {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .calendar-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 10px 8px;
+            border-bottom: 2px solid rgba(47, 36, 31, 0.4);
+            font-family: 'Marck Script', cursive;
+            font-size: 2.5rem;
+            color: var(--text-main);
+        }
+
+        .calendar-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .calendar-weekday {
+            padding: 15px 4px 10px;
+            border-bottom: 2px solid rgba(47, 36, 31, 0.2);
+            font-family: 'Marck Script', cursive;
+            font-size: 1.3rem;
+        }
+
+        .calendar-weekday + .calendar-weekday,
+        .calendar-date + .calendar-date {
+            border-left: 2px solid rgba(47, 36, 31, 0.15);
+        }
+
+        .calendar-date {
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-family: 'Marck Script', cursive;
+            font-size: 2.8rem;
+        }
+
+        .calendar-date-heart {
+            color: var(--accent);
+        }
+
+        .calendar-date-heart span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart-drawn {
+            position: absolute;
+            width: 95px;
+            height: 85px;
+            transform: rotate(-5deg);
+            z-index: 1;
+        }
+
+        .heart-drawn path {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400; /* Изначально скрыто для анимации рисования */
+            transition: stroke-dashoffset 1.5s ease-in-out;
+        }
+
+        /* Класс активации анимации сердца при скролле */
+        .calendar-section.is-visible .heart-drawn path {
+            stroke-dashoffset: 0;
+        }
+
+        /* ТАЙМИНГ */
+        .timing-section {
+            background-color: ;
+        }
+
+        .timing-section .title-serif {
+            font-family: 'Marck Script', cursive;
+            font-size: 3.2rem;
+            text-transform: none;
+            letter-spacing: 0;
+            margin-bottom: 0;
+        }
+
+        .timing-list {
+            display: grid;
+            gap: 35px;
+            margin: 40px auto 0;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .timing-route {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 80px;
+            height: calc(100% - 20px);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timing-route-line {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 2;
+            stroke-dasharray: 6 6;
+        }
+
+        .timing-row {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timing-row-left .timing-content { grid-column: 1; text-align: right; }
+        .timing-row-left .timing-icon { grid-column: 2; }
+        .timing-row-right .timing-icon { grid-column: 2; }
+        .timing-row-right .timing-content { grid-column: 3; text-align: left; }
+
+        .timing-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .timing-icon svg {
+            width: 46px;
+            height: 46px;
+            background: var(--gray-light);
+            padding: 8px;
+            border-radius: 50%;
+            border: 1px solid rgba(143, 107, 91, 0.15);
+            transition: transform 0.4s ease;
+        }
+
+        .timing-row:hover .timing-icon svg {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .timing-icon path {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .timing-heading {
+            font-family: 'Marck Script', cursive;
+            font-size: 2.4rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .timing-content p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-main);
+        }
+
+        /* ПОЛАРОИДЫ-ЖИВЫЕ КАРТОЧКИ */
+        .places-polaroid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 45px;
+            margin-top: 35px;
+        }
+
+        .polaroid-card {
+            background: #ffffff;
+            padding: 16px 16px 24px 16px;
+            box-shadow: 0 15px 40px rgba(47, 36, 31, 0.08);
+            border: 1px solid #f2ede7;
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Эффект легкой небрежности — карточки слегка повернуты в разные стороны */
+        .polaroid-card:nth-child(1) { transform: rotate(-2deg); }
+        .polaroid-card:nth-child(2) { transform: rotate(2deg); }
+
+        .polaroid-card:hover {
+            transform: scale(1.04) rotate(0deg) translateY(-8px);
+            z-index: 10;
+            box-shadow: 0 25px 50px rgba(47, 36, 31, 0.15);
+        }
+
+        .place-slider-track {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            background: #f7efe9;
+            border-radius: 4px;
+        }
+
+        .place-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: none;
+        }
+
+        .place-slide.is-active {
+            opacity: 1;
+            display: block;
+        }
+
+        .place-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .polaroid-footer {
+            text-align: center;
+            padding-top: 18px;
+        }
+
+        .polaroid-footer .place-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .polaroid-footer .place-address {
+            font-size: 0.75rem;
+            color: #7a6e67;
+            margin: 6px 0 0 0;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-outline {
+            display: block;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+            font-weight: 500;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ДРЕСС-КОД МУДБОРД */
+        .gray-bg {
+            background-color:;
+        }
+
+        .small-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 35px 0;
+        }
+
+        .palette span {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .palette span:hover {
+            transform: scale(1.2);
+        }
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        .mood-card {
+            aspect-ratio: 3 / 4;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 14px 6px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            color: #fffaf7;
+            box-shadow: var(--shadow);
+            transition: transform 0.4s ease;
+        }
+
+        .mood-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mood-card:nth-child(1) { background: linear-gradient(to top, rgba(47,36,31,0.85), transparent), url('sourses/mood_1.jpg') center/cover; background-color: #b4a091; }
+        .mood-card:nth-child(2) { background: linear-gradient(to top, rgba(47,36,31,0.85), transparent), url('sourses/mood_2.jpg') center/cover; background-color: #d8c8b8; }
+        .mood-card:nth-child(3) { background: linear-gradient(to top, rgba(47,36,31,0.85), transparent), url('sourses/mood_3.jpg') center/cover; background-color: #333; }
+
+        /* ДЕТАЛИ */
+        .details-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .details-divider {
+            width: 50px;
+            height: 1px;
+            background: var(--line);
+            margin: 0 auto;
+        }
+
+        /* RSVP */
+        .rsvp-section {
+            background-color: ;
+        }
+
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 35px;
+        }
+
+        .rsvp-form input,
+        .rsvp-form select {
+            width: 100%;
+            height: 60px;
+            padding: 0 20px;
+            border: 1px solid rgba(143, 107, 91, 0.12);
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: #ffffff;
+            color: var(--text-main);
+            box-shadow: var(--shadow);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .rsvp-form input:focus,
+        .rsvp-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(143, 107, 91, 0.1);
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-wrapper::after {
+            content: '▾';
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-main);
+            pointer-events: none;
+            font-size: 1.1rem;
+        }
+
+        .rsvp-form select {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .btn-black {
+            background: #2f241f;
+            color: #ffffff;
+            height: 60px;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-black:hover {
+            background: #1a1411;
+            transform: translateY(-2px);
+        }
+
+        .btn-black:active {
+            transform: translateY(0);
+        }
+
+        /* ТАЙМЕР С АНИМАЦИЕЙ СЕКУНД */
+        .countdown-note {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 10px 0 0 0;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 35px;
+        }
+
+        .countdown-item {
+            padding: 18px 4px;
+            border-radius: 14px;
+            background: ;
+            border: 1px solid rgba(143, 107, 91, 0.06);
+            box-shadow: var(--shadow);
+        }
+
+        .countdown-value {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: ;
+            transition: transform 0.2s ease;
+        }
+
+        /* Эффект пульсации для секундного блока */
+        .pulse-effect {
+            animation: tickPulse 0.3s ease-out;
+        }
+
+        @keyframes tickPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); color: #1a1411; }
+            100% { transform: scale(1); }
+        }
+
+        .countdown-label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: #7a6e67;
+            letter-spacing: 0.05em;
+        }
+        /* =========================
+   FOOTER POLAROID
+========================= */
+
+.footer-polaroid{
+    padding: 70px 20px 80px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-card{
+    width: 100%;
+    max-width: 320px;
+    background: #ffffff;
+    padding: 15px 15px 55px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+}
+
+.footer-frame{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.footer-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.footer-caption{
+    margin-top: 22px;
+    text-align: center;
+    font-family: 'Marck Script', cursive;
+    font-size: 2.3rem;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+@media (max-width: 480px){
+
+    .footer-polaroid{
+        padding: 60px 16px 70px;
+    }
+
+    .footer-card{
+        max-width: 290px;
+        padding: 12px 12px 50px;
+    }
+
+    .footer-caption{
+        font-size: 2rem;
+    }
+}
+
+        /* ФУТЕР */
+        .footer-photo {
+            border: 60px solid #f5f5f5;
+            height: 380px;
+            background: linear-gradient(rgba(26, 16, 11, 0.2), rgba(26, 16, 11, 0.65)), #efe2d8 url('sourse/on_erth.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 2;
+
+        }
+
+        .footer-overlay h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            margin-bottom: 240px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+            
+        }
+
+        /* ПЛАВНОЕ ПРОЯВЛЕНИЕ ПРИ СКРОЛЛЕ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1000ms cubic-bezier(0.25, 1, 0.5, 1), transform 1000ms cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden-field, .hidden-frame {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ГЛАВНАЯ ОБЛОЖКА С ПАРАЛЛАКСОМ -->
+        <header class="hero">
+            <div class="hero-bg" id="heroBg"></div>
+            <div class="hero-overlay">
+                <h1>ILIA & KRISTINA</h1>
+                <p class="hero-date">19 сентября 2026</p>
+            </div>
+        </header>
+
+        <!-- ПРИВЕТСТВИЕ -->
+        <section class="section text-center reveal">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Дорогие гости!</h2>
+
+            <p class="intro-text">Совсем скоро наступит день, который станет для нас особенным — день рождения нашей семьи!</p>            
+            
+            <div class="photo-grid-three">
+                <div class="photo-placeholder photo-1">
+                    <div class="photo-inner-text">
+                        <span>наши</span><strong>истории</strong>
+                    </div>
+                </div>
+                <div class="photo-placeholder photo-2">
+                    <div class="photo-inner-text">
+                        <span>смех</span><strong>и танцы</strong>
+                    </div>
+                </div>
+                <div class="photo-placeholder photo-3">
+                    <div class="photo-inner-text">
+                        <span>ваши</span><strong>улыбки</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КАЛЕНДАРЬ -->
+        <section class="calendar-section reveal">
+            <p class="calendar-caption">Приглашаем разделить этот особенный день вместе с нами</p>
+            <div class="calendar-card">
+                <div class="calendar-card-head">
+                    <span>Сентябрь</span>
+                    <span>2026</span>
+                </div>
+                <div class="calendar-mini-grid">
+                    <div class="calendar-weekday">пятница</div>
+                    <div class="calendar-weekday" style="color: var(--accent);">суббота</div>
+                    <div class="calendar-weekday">воскресенье</div>
+                    <div class="calendar-date">18</div>
+                    <div class="calendar-date calendar-date-heart">
+                        <svg class="heart-drawn" viewBox="0 0 120 104">
+                            <path d="M60 94 C36 73 15 55 15 32 C15 17 26 8 39 8 C49 8 56 14 60 22 C64 14 72 8 82 8 C95 8 105 17 105 32 C105 55 84 73 60 94 Z" />
+                        </svg>
+                        <span>19</span>
+                    </div>
+                    <div class="calendar-date">20</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ТАЙМИНГ -->
+        <section class="section reveal timing-section">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 3.2rem; text-transform: none; letter-spacing: 0;">Во сколько?</h2>
+            <div class="timing-list">
+                <svg class="timing-route" viewBox="0 0 86 520">
+                    <path class="timing-route-line" d="M43 0 C82 42 80 96 44 140 C10 181 8 232 43 276 C82 326 76 386 42 434 C26 457 25 484 43 514" />
+                </svg>
+
+                <div class="timing-row timing-row-left">
+                    <div class="timing-content">
+                        <div class="timing-heading">15:30</div>
+                        <p>Велком и фуршет, где вы расслабитесь после дороги.</p>
+                    </div>
+                    <div class="timing-icon">
+                        <svg viewBox="0 0 48 48"><path d="M16 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M32 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M19 23v16m16-16v16M13 39h12m4 0h12"/></svg>
+                    </div>
+                </div>
+
+                <div class="timing-row timing-row-right">
+                    <div class="timing-icon">
+                        <svg viewBox="0 0 48 48"><path d="M19 25c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/><path d="M29 20c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/></svg>
+                    </div>
+                    <div class="timing-content">
+                        <div class="timing-heading">16:00</div>
+                        <p>Выездная церемония, где прозвучат самые важные слова.</p>
+                    </div>
+                </div>
+
+                <div class="timing-row timing-row-left">
+                    <div class="timing-content">
+                        <div class="timing-heading">17:00</div>
+                        <p>Банкет, ужин, тосты, танцы и самый теплый вечер.</p>
+                    </div>
+                    <div class="timing-icon">
+                        <svg viewBox="0 0 48 48"><path d="M16 8v32M11 8v12c0 4 2 7 5 7s5-3 5-7V8"/><path d="M32 8c4 5 5 13 1 20v12"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЛОКАЦИИ -->
+        <section class="section reveal">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Место проведения</h2>
+            <div class="places-polaroid-container">
+                <!-- ЗАГС -->
+                <div class="polaroid-card">
+                    <div class="place-slider">
+                        <div class="place-slider-track">
+                            <div class="place-slide is-active"><img src="sourses/zags_1.jpg" alt="ЗАГС"></div>
+                            <div class="place-slide"><img src="sourses/zags_2.jpg" alt="ЗАГС"></div>
+                        </div>
+                    </div>
+                    <div class="polaroid-footer">
+                        <p class="place-name">Дом семейных торжеств</p>
+                        <p class="place-address">пр.Мира 24Г</p>
+                    </div>
+                    <a class="btn-outline" href="https://2gis.ru/krasnoyarsk/firm/985605639535315" target="_blank" rel="noreferrer">КАРТА</a>
+                </div>
+
+                <!-- БАНКЕТ -->
+                <div class="polaroid-card">
+                    <div class="place-slider">
+                        <div class="place-slider-track">
+                            <div class="place-slide is-active"><img src="sourses/artel_1.jpg" ></div>
+                            <div class="place-slide"><img src="sourses/artel_2.jpg"></div>
+                        </div>
+                    </div>
+                    <div class="polaroid-footer">
+                        <p class="place-name">LOFT "Artel"</p>
+                        <p class="place-address">ул. Матросова, 30Х</p>
+                    </div>
+                    <a class="btn-outline" href="https://2gis.ru/krasnoyarsk/firm/70000001105110638" target="_blank" rel="noreferrer">КАРТА</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ДРЕСС-КОД -->
+        <section class="section gray-bg reveal">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Дресс-код</h2>
+            <p class="small-text text-center">Никаких рамок, только красивые образы. Белый цвет уже занят, а яркие цвета и шорты - в заслуженном отпуске</p>
+            
+            <div class="mood-grid">
+                <div class="mood-card"><span>Элегантность<br> и комфорт</span></div>
+                <div class="mood-card"><span>Пастельные<br>тона</span></div>
+                <div class="mood-card"><span>пися<br>попа</span></div>
+            </div>
+        </section>
+
+        <!-- ДЕТАЛИ -->
+        <section class="section reveal">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Детали</h2>
+            <div class="details-layout">
+                <div>
+                    <div class="detail-label">Подарки</div>
+                    <p class="small-text"> Самым ценным подарком для нас станет вклад в бюджет нашей молодой семьи</p>
+                </div>
+                <div class="details-divider"></div>
+
+                <div>
+                    <div class="detail-label">Вместо цветов</div>
+                    <p class="small-text">Пожалуйста, не дарите нам цветы - лучшим дополнением станут сертификаты в Золотое яблоко</p>
+                </div>
+                <div class="details-divider"></div>
+                <div>
+                    <div class="detail-label">Формат вечера</div>
+                    <p class="small-text">Мы будем рады вам и вашим детям, но просим принять во внимание, что площадка не позволяет организовать досуг для детей и обеспечить безопасное пространство для них</p>
+                </div>
+               
+            </div>
+        </section>
+    
+        <!-- RSVP -->
+        <section class="section reveal rsvp-section">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Анкета</h2>
+            <p class="small-text text-center">Пожалуйста, подтвердите присутствие до 20 августа.</p>
+            <form class="rsvp-form">
+                <input type="text" placeholder="Ваше Имя и Фамилия" required>
+                <div class="select-wrapper">
+                    <select required>
+                        <option value="" disabled selected>Придете ли вы?</option>
+                        <option>Да, с радостью</option>
+                        <option>К сожалению, не смогу</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select required>
+                        <option value="" disabled selected>Где вас ждать?</option>
+                        <option>В ЗАГСе</option>
+                        <option>На банкете</option>
+                        <option>На всех событиях</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-black">ПОДТВЕРДИТЬ УЧАСТИЕ</button>
+            </form>
+        </section>
+
+        <!-- ТАЙМЕР -->
+        <section class="section reveal" id="countdown-sec">
+            <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">До нашего торжества</h2>
+            <div class="countdown-grid">
+                <div class="countdown-item"><span class="countdown-value" id="cd-d">000</span><span class="countdown-label">дней</span></div>
+                <div class="countdown-item"><span class="countdown-value" id="cd-h">00</span><span class="countdown-label">часов</span></div>
+                <div class="countdown-item"><span class="countdown-value" id="cd-m">00</span><span class="countdown-label">минут</span></div>
+                <div class="countdown-item"><span class="countdown-value" id="cd-s">00</span><span class="countdown-label">секунд</span></div>
+            </div>
+        </section>
+
+        <!-- ФУТЕР -->
+        <footer class="footer-polaroid reveal">
+            <div class="footer-card">
+                <div class="footer-frame">
+                    <img src="sourse/on_erth.jpg" alt="Илья и Кристина">
+                </div>
+        
+                <div class="footer-caption">
+                    С любовью,<br>
+                    Илья & Кристина ♡
+                </div>
+            </div>
+        </footer>
+
+            
+        </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Улучшенная анимация появления (Плавный Reveal)
+            const revBlocks = document.querySelectorAll('.reveal, .calendar-section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.12 });
+            revBlocks.forEach(b => observer.observe(b));
+
+            // 2. Параллакс эффект для главной обложки
+            const heroBg = document.getElementById('heroBg');
+            window.addEventListener('scroll', function() {
+                let depth = window.scrollY;
+                if (depth < window.innerHeight) {
+                    heroBg.style.transform = `translateY(${depth * 0.25}px)`;
+                }
+            });
+
+            // 3. Умный таймер с «пульсацией» секунд
+            const targetDate = new Date("2026-09-19T15:30:00+07:00").getTime();
+            const secBlock = document.getElementById('cd-s');
+            let lastSec = "";
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+                if (diff <= 0) return;
+                
+                document.getElementById('cd-d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('cd-h').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('cd-m').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                
+                let currentSec = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+                if (currentSec !== lastSec) {
+                    secBlock.innerText = currentSec;
+                    lastSec = currentSec;
+                    // Эффект живого тиканья
+                    secBlock.classList.remove('pulse-effect');
+                    void secBlock.offsetWidth; // Триггер рендеринга для перезапуска анимации
+                    secBlock.classList.add('pulse-effect');
+                }
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+
+            // 4. Слайдеры локаций
+            document.querySelectorAll('.place-slider').forEach(slider => {
+                const slides = slider.querySelectorAll('.place-slide');
+                let cur = 0;
+                if(slides.length > 1) {
+                    setInterval(() => {
+                        slides[cur].classList.remove('is-active');
+                        cur = (cur + 1) % slides.length;
+                        slides[cur].classList.add('is-active');
+                    }, 3500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
