@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на свадьбу — Илья и Кристина</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Marck+Script&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cinzel:wght@400;500&family=Marck+Script&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-white: #ffffff;
@@ -39,14 +39,140 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+
+        /* Декоративный фон по всему сайту */
+        .page-decor {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .decor {
+            position: absolute;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            --rot: 0deg;
+        }
+
+        .page-decor.is-ready .decor,
+        .hero-decor.is-ready .decor {
+            opacity: 0.26;
+        }
+
+        .decor-heart {
+            width: 30px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92'%3E%3Cpath d='M50 86 C28 66 6 50 6 28 C6 14 18 4 30 4 C40 4 46 12 50 20 C54 12 60 4 70 4 C82 4 94 14 94 28 C94 50 72 66 50 86Z' fill='none' stroke='%238f6b5b' stroke-width='2.8'/%3E%3C/svg%3E");
+        }
+
+        .decor-heart-filled {
+            width: 16px;
+            height: 15px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92'%3E%3Cpath d='M50 86 C28 66 6 50 6 28 C6 14 18 4 30 4 C40 4 46 12 50 20 C54 12 60 4 70 4 C82 4 94 14 94 28 C94 50 72 66 50 86Z' fill='%238f6b5b'/%3E%3C/svg%3E");
+        }
+
+        .page-decor.is-ready .decor-heart-filled,
+        .hero-decor.is-ready .decor-heart-filled {
+            opacity: 0.17;
+        }
+
+        .decor-cloud {
+            width: 62px;
+            height: 34px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 60'%3E%3Cpath d='M82 44 H28 C14 44 10 32 18 24 C14 14 26 8 38 14 C44 4 62 4 68 14 C80 8 92 16 88 28 C100 30 98 44 82 44Z' fill='none' stroke='%238f6b5b' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
+
+        .decor-angel {
+            width: 38px;
+            height: 46px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 88'%3E%3Cellipse cx='36' cy='12' rx='14' ry='4' fill='none' stroke='%238f6b5b' stroke-width='1.8'/%3E%3Ccircle cx='36' cy='28' r='8' fill='none' stroke='%238f6b5b' stroke-width='1.8'/%3E%3Cpath d='M36 36 L36 54' stroke='%238f6b5b' stroke-width='1.7'/%3E%3Cpath d='M18 44 C18 30 28 24 36 32 C44 24 54 30 54 44 C54 54 44 60 36 56 C28 60 18 54 18 44Z' fill='none' stroke='%238f6b5b' stroke-width='1.7'/%3E%3Cpath d='M6 40 C2 30 10 20 20 26' fill='none' stroke='%238f6b5b' stroke-width='1.6'/%3E%3Cpath d='M66 40 C70 30 62 20 52 26' fill='none' stroke='%238f6b5b' stroke-width='1.6'/%3E%3C/svg%3E");
+        }
+
+        .decor-float {
+            animation: decorFloat 7s ease-in-out infinite;
+        }
+
+        .decor-float-slow {
+            animation: decorFloat 11s ease-in-out infinite;
+        }
+
+        @keyframes decorFloat {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(-4px) rotate(var(--rot, 0deg)); }
+        }
+
+        .decor-float-slow { animation-delay: -3s; }
+        .d-h2, .d-c2, .d-a2, .d-hf2, .d-c5, .d-a5 { animation-delay: -1.5s; }
+        .d-h4, .d-c4, .d-a4, .d-hf4, .d-c7, .d-a7 { animation-delay: -4s; }
+        .d-h6, .d-c6, .d-a6, .d-hf5 { animation-delay: -2.5s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .decor-float,
+            .decor-float-slow {
+                animation: none;
+            }
+        }
+
+        /* Декор в hero — светлый, поверх фото */
+        .hero-decor {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .hero-decor.is-ready .decor {
+            opacity: 0.42;
+            filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.55));
+        }
+
+        .hero-decor .decor-heart { width: 34px; height: 32px; }
+        .hero-decor .decor-cloud { width: 72px; height: 40px; }
+        .hero-decor .decor-angel { width: 44px; height: 54px; }
+
+        .hero-decor .decor-heart {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92'%3E%3Cpath d='M50 86 C28 66 6 50 6 28 C6 14 18 4 30 4 C40 4 46 12 50 20 C54 12 60 4 70 4 C82 4 94 14 94 28 C94 50 72 66 50 86Z' fill='none' stroke='%23ffffff' stroke-width='2.8'/%3E%3C/svg%3E");
+        }
+
+        .hero-decor .decor-cloud {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 60'%3E%3Cpath d='M82 44 H28 C14 44 10 32 18 24 C14 14 26 8 38 14 C44 4 62 4 68 14 C80 8 92 16 88 28 C100 30 98 44 82 44Z' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
+
+        .hero-decor .decor-angel {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 88'%3E%3Cellipse cx='36' cy='12' rx='14' ry='4' fill='none' stroke='%23ffffff' stroke-width='1.8'/%3E%3Ccircle cx='36' cy='28' r='8' fill='none' stroke='%23ffffff' stroke-width='1.8'/%3E%3Cpath d='M36 36 L36 54' stroke='%23ffffff' stroke-width='1.7'/%3E%3Cpath d='M18 44 C18 30 28 24 36 32 C44 24 54 30 54 44 C54 54 44 60 36 56 C28 60 18 54 18 44Z' fill='none' stroke='%23ffffff' stroke-width='1.7'/%3E%3Cpath d='M6 40 C2 30 10 20 20 26' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3Cpath d='M66 40 C70 30 62 20 52 26' fill='none' stroke='%23ffffff' stroke-width='1.6'/%3E%3C/svg%3E");
         }
 
         .section {
             padding: 20px 24px;
             text-align: center;
             position: relative;
-            background-color: var(--bg-white);
+            background-color: transparent;
             z-index: 2;
+            isolation: isolate;
+        }
+
+        .section > *,
+        .calendar-section > *,
+        .footer-polaroid > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-intro {
+            margin-top: -100px;
+            padding-top: 120px;
         }
 
         .intro-text {
@@ -62,18 +188,98 @@
             position: relative;
             color: white;
             overflow: hidden;
-            z-index: 1;
+            z-index: 3;
         }
 
         .hero-bg {
             position: absolute;
-            top: 10;
+            top: -85%;
             left: 0;
-            bottom: 45px;
             width: 100%;
-            height: 120%; /* Запас для смещения вниз */
-            background: #efe2d8 url('sourse/main_photo.jpg') center/cover no-repeat;
+            height: 165%;
+            background-color: #efe2d8;
+            background-image: url('sourse/main_photo.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center bottom;
             will-change: transform;
+            mask-image: linear-gradient(
+                to bottom,
+                #000 0%,
+                #000 58%,
+                rgba(0, 0, 0, 0.97) 72%,
+                rgba(0, 0, 0, 0.82) 82%,
+                rgba(0, 0, 0, 0.55) 90%,
+                rgba(0, 0, 0, 0.22) 96%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                #000 0%,
+                #000 58%,
+                rgba(0, 0, 0, 0.97) 72%,
+                rgba(0, 0, 0, 0.82) 82%,
+                rgba(0, 0, 0, 0.55) 90%,
+                rgba(0, 0, 0, 0.22) 96%,
+                transparent 100%
+            );
+        }
+
+        .hero-transition {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 48%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-transition-mist {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(255, 250, 245, 0.18) 28%,
+                rgba(255, 252, 248, 0.55) 52%,
+                rgba(255, 255, 255, 0.88) 78%,
+                #ffffff 100%
+            );
+        }
+
+        .hero-transition-blur {
+            position: absolute;
+            left: -8%;
+            right: -8%;
+            bottom: -20px;
+            height: 140px;
+            background: #ffffff;
+            filter: blur(28px);
+            opacity: 0.92;
+        }
+
+        .hero-transition-curve {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            line-height: 0;
+            z-index: 1;
+        }
+
+        .hero-transition-curve svg {
+            display: block;
+            width: 100%;
+            height: 52px;
+        }
+
+        .hero-transition-curve path {
+            fill: #ffffff;
+        }
+
+        .hero-transition-curve path.curve-shadow {
+            fill: rgba(217, 195, 184, 0.2);
         }
 
         .hero-overlay {
@@ -84,29 +290,45 @@
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
-            padding: 0 4px 80px;
-            z-index: 2;
+            padding: 0 4px 200px;
+            z-index: 3;
+        }
+
+        .hero h1,
+        .hero-date {
+            font-family: 'Caveat', cursive;
+            color: #4f4845;
+            mix-blend-mode: multiply;
+            text-transform: none;
         }
 
         .hero h1 {
-            color: #000000;
-
-            margin: 0 0 50px 0;
-            font-family: 'Cinzel', serif;
-            font-size: 2.6rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin: 0 0 8px 0;
+            font-size: 4rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            line-height: 1.05;
+            -webkit-text-stroke: 0.3px rgba(79, 72, 69, 0.35);
+            text-shadow:
+                0.5px 0.8px 0 rgba(79, 72, 69, 0.45),
+                -0.3px 0.4px 0 rgba(110, 102, 98, 0.28),
+                0.8px -0.2px 0 rgba(90, 82, 78, 0.18),
+                0 0 0.6px rgba(70, 64, 60, 0.22);
+            filter: url(#pencil-grain);
         }
 
         .hero-date {
-            color: #000000;
             margin: 0;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            opacity: 0.95;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 1.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            opacity: 0.92;
+            -webkit-text-stroke: 0.2px rgba(79, 72, 69, 0.25);
+            text-shadow:
+                0.4px 0.5px 0 rgba(79, 72, 69, 0.38),
+                -0.2px 0.3px 0 rgba(105, 98, 94, 0.22),
+                0 0 0.5px rgba(75, 68, 64, 0.18);
+            filter: url(#pencil-grain);
         }
 
         .title-serif {
@@ -188,10 +410,12 @@
 
         /* КАЛЕНДАРЬ И ОЖИВАЮЩЕЕ СЕРДЦЕ */
         .calendar-section {
-            background: var(--bg-white);
+            background: transparent;
             padding: 40px 24px 70px;
             text-align: center;
             z-index: 2;
+            position: relative;
+            isolation: isolate;
         }
 
         .calendar-caption {
@@ -681,10 +905,13 @@
 
 .footer-polaroid{
     padding: 70px 20px 80px;
-    background: #ffffff;
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
 }
 
 .footer-card{
@@ -777,18 +1004,78 @@
 </head>
 <body>
 
+    <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+        <defs>
+            <filter id="pencil-grain" x="-5%" y="-5%" width="110%" height="110%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="3" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.35" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+        </defs>
+    </svg>
+
     <div class="container">
+        <div class="page-decor" aria-hidden="true">
+            <span class="decor decor-heart decor-float d-h1"></span>
+            <span class="decor decor-heart d-h2"></span>
+            <span class="decor decor-heart decor-float-slow d-h3"></span>
+            <span class="decor decor-heart d-h4"></span>
+            <span class="decor decor-heart decor-float d-h5"></span>
+            <span class="decor decor-heart d-h6"></span>
+            <span class="decor decor-heart decor-float-slow d-h7"></span>
+            <span class="decor decor-heart d-h8"></span>
+            <span class="decor decor-heart decor-float d-h9"></span>
+            <span class="decor decor-heart decor-float-slow d-h10"></span>
+            <span class="decor decor-heart-filled d-hf1"></span>
+            <span class="decor decor-heart-filled decor-float d-hf2"></span>
+            <span class="decor decor-heart-filled d-hf3"></span>
+            <span class="decor decor-heart-filled decor-float-slow d-hf4"></span>
+            <span class="decor decor-heart-filled d-hf5"></span>
+            <span class="decor decor-cloud decor-float-slow d-c1"></span>
+            <span class="decor decor-cloud d-c2"></span>
+            <span class="decor decor-cloud decor-float d-c3"></span>
+            <span class="decor decor-cloud decor-float-slow d-c4"></span>
+            <span class="decor decor-cloud d-c5"></span>
+            <span class="decor decor-cloud decor-float d-c6"></span>
+            <span class="decor decor-cloud decor-float-slow d-c7"></span>
+            <span class="decor decor-cloud d-c8"></span>
+            <span class="decor decor-angel decor-float d-a1"></span>
+            <span class="decor decor-angel decor-float-slow d-a2"></span>
+            <span class="decor decor-angel d-a3"></span>
+            <span class="decor decor-angel decor-float-slow d-a4"></span>
+            <span class="decor decor-angel decor-float d-a5"></span>
+            <span class="decor decor-angel decor-float-slow d-a6"></span>
+            <span class="decor decor-angel d-a7"></span>
+        </div>
+
         <!-- ГЛАВНАЯ ОБЛОЖКА С ПАРАЛЛАКСОМ -->
         <header class="hero">
             <div class="hero-bg" id="heroBg"></div>
+            <div class="hero-decor" aria-hidden="true">
+                <span class="decor decor-cloud decor-float-slow hd-c1"></span>
+                <span class="decor decor-cloud decor-float hd-c2"></span>
+                <span class="decor decor-heart decor-float hd-h1"></span>
+                <span class="decor decor-heart decor-float-slow hd-h2"></span>
+                <span class="decor decor-angel decor-float hd-a1"></span>
+                <span class="decor decor-angel decor-float-slow hd-a2"></span>
+            </div>
+            <div class="hero-transition" aria-hidden="true">
+                <div class="hero-transition-mist"></div>
+                <div class="hero-transition-blur"></div>
+                <div class="hero-transition-curve">
+                    <svg viewBox="0 0 450 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="curve-shadow" d="M0,36 C56,52 94,24 150,38 C206,52 244,22 300,36 C356,50 394,20 450,34 L450,52 L0,52 Z"/>
+                        <path d="M0,26 C62,42 98,14 155,28 C212,42 248,12 305,26 C362,40 398,10 450,24 L450,52 L0,52 Z"/>
+                    </svg>
+                </div>
+            </div>
             <div class="hero-overlay">
-                <h1>ILIA & KRISTINA</h1>
+                <h1>Ilia & Kristina</h1>
                 <p class="hero-date">19 сентября 2026</p>
             </div>
         </header>
 
         <!-- ПРИВЕТСТВИЕ -->
-        <section class="section text-center reveal">
+        <section class="section section-intro text-center reveal">
             <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Дорогие гости!</h2>
 
             <p class="intro-text">Совсем скоро наступит день, который станет для нас особенным — день рождения нашей семьи!</p>            
@@ -796,17 +1083,17 @@
             <div class="photo-grid-three">
                 <div class="photo-placeholder photo-1">
                     <div class="photo-inner-text">
-                        <span>наши</span><strong>истории</strong>
+                        <span></span><strong></strong>
                     </div>
                 </div>
                 <div class="photo-placeholder photo-2">
                     <div class="photo-inner-text">
-                        <span>смех</span><strong>и танцы</strong>
+                        <span></span><strong></strong>
                     </div>
                 </div>
                 <div class="photo-placeholder photo-3">
                     <div class="photo-inner-text">
-                        <span>ваши</span><strong>улыбки</strong>
+                        <span></span><strong></strong>
                     </div>
                 </div>
             </div>
@@ -846,27 +1133,26 @@
 
                 <div class="timing-row timing-row-left">
                     <div class="timing-content">
-                        <div class="timing-heading">15:30</div>
-                        <p>Велком и фуршет, где вы расслабитесь после дороги.</p>
+                        <div class="timing-heading">15:45</div>
+                        <p>Регистрация брака в Доме семейных торжеств. Рекомендуем прийти заранее</p>
                     </div>
                     <div class="timing-icon">
-                        <svg viewBox="0 0 48 48"><path d="M16 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M32 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M19 23v16m16-16v16M13 39h12m4 0h12"/></svg>
+                        <svg viewBox="0 0 48 48"><path d="M19 25c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/><path d="M29 20c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/></svg>
                     </div>
                 </div>
 
                 <div class="timing-row timing-row-right">
                     <div class="timing-icon">
-                        <svg viewBox="0 0 48 48"><path d="M19 25c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/><path d="M29 20c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/></svg>
-                    </div>
+     <svg viewBox="0 0 48 48"><path d="M16 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M32 5c-2 8-1 14 3 18 4-4 5-10 3-18h-6Z"/><path d="M19 23v16m16-16v16M13 39h12m4 0h12"/></svg>                    </div>
                     <div class="timing-content">
-                        <div class="timing-heading">16:00</div>
-                        <p>Выездная церемония, где прозвучат самые важные слова.</p>
+                        <div class="timing-heading">16:30</div>
+                        <p>Сбор гостей в LOFT "Artel" и фуршет, где можно расслабиться</p>
                     </div>
                 </div>
 
                 <div class="timing-row timing-row-left">
                     <div class="timing-content">
-                        <div class="timing-heading">17:00</div>
+                        <div class="timing-heading">17:15</div>
                         <p>Банкет, ужин, тосты, танцы и самый теплый вечер.</p>
                     </div>
                     <div class="timing-icon">
@@ -1004,6 +1290,122 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 0. Хаотичное размещение декора без наложения на контент
+            (function initDecorPlacement() {
+                const GAP = 14;
+                const DECOR_GAP = 8;
+
+                function rectsOverlap(a, b) {
+                    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+                }
+
+                function inflate(rect, pad) {
+                    return {
+                        left: rect.left - pad,
+                        top: rect.top - pad,
+                        right: rect.right + pad,
+                        bottom: rect.bottom + pad
+                    };
+                }
+
+                function relRect(el, parent) {
+                    const e = el.getBoundingClientRect();
+                    const p = parent.getBoundingClientRect();
+                    return {
+                        left: e.left - p.left,
+                        top: e.top - p.top,
+                        right: e.right - p.left,
+                        bottom: e.bottom - p.top
+                    };
+                }
+
+                function getObstacles(root, selector) {
+                    return Array.from(root.querySelectorAll(selector))
+                        .filter(el => el.offsetParent !== null && el.getBoundingClientRect().width > 0);
+                }
+
+                function placeLayer(layer, boundsRoot, obstacleEls, opts) {
+                    const bounds = boundsRoot.getBoundingClientRect();
+                    const minY = opts.minY || 0;
+                    const maxY = (opts.maxY ?? bounds.height);
+                    const placed = [];
+
+                    layer.querySelectorAll('.decor').forEach(item => {
+                        item.style.left = '';
+                        item.style.top = '';
+                        const w = item.offsetWidth;
+                        const h = item.offsetHeight;
+                        if (!w || !h) return;
+
+                        const maxX = Math.max(0, bounds.width - w);
+                        const yRange = Math.max(0, maxY - minY - h);
+                        let found = false;
+
+                        for (let i = 0; i < 120; i++) {
+                            const x = Math.random() * maxX;
+                            const y = minY + Math.random() * yRange;
+                            const candidate = { left: x, top: y, right: x + w, bottom: y + h };
+
+                            const hitsObstacle = obstacleEls.some(obs => {
+                                const r = inflate(relRect(obs, boundsRoot), GAP);
+                                return rectsOverlap(candidate, r);
+                            });
+                            const hitsDecor = placed.some(p => rectsOverlap(candidate, inflate(p, DECOR_GAP)));
+                            if (hitsObstacle || hitsDecor) continue;
+
+                            item.style.left = x + 'px';
+                            item.style.top = y + 'px';
+                            item.style.setProperty('--rot', (Math.random() * 32 - 16).toFixed(1) + 'deg');
+                            placed.push(candidate);
+                            found = true;
+                            break;
+                        }
+
+                        if (!found) {
+                            item.style.left = (maxX * Math.random()) + 'px';
+                            item.style.top = (minY + yRange * Math.random()) + 'px';
+                            item.style.setProperty('--rot', (Math.random() * 32 - 16).toFixed(1) + 'deg');
+                        }
+                    });
+
+                    layer.classList.add('is-ready');
+                }
+
+                function layoutDecor() {
+                    const container = document.querySelector('.container');
+                    const pageDecor = document.querySelector('.page-decor');
+                    const hero = document.querySelector('.hero');
+                    const heroDecor = document.querySelector('.hero-decor');
+                    if (!container || !pageDecor) return;
+
+                    pageDecor.classList.remove('is-ready');
+                    heroDecor?.classList.remove('is-ready');
+
+                    const contentObstacles = getObstacles(container, [
+                        '.hero-overlay',
+                        '.section > *',
+                        '.calendar-section > *',
+                        '.footer-polaroid > *'
+                    ].join(','));
+
+                    const heroH = hero ? hero.offsetHeight : 0;
+                    placeLayer(pageDecor, container, contentObstacles, { minY: heroH + 12 });
+
+                    if (hero && heroDecor) {
+                        const heroObstacles = getObstacles(hero, '.hero-overlay, .hero-overlay *');
+                        placeLayer(heroDecor, hero, heroObstacles, { maxY: hero.offsetHeight * 0.55 });
+                    }
+                }
+
+                layoutDecor();
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(layoutDecor, 200);
+                });
+                window.addEventListener('load', layoutDecor);
+            })();
+
             // 1. Улучшенная анимация появления (Плавный Reveal)
             const revBlocks = document.querySelectorAll('.reveal, .calendar-section');
             const observer = new IntersectionObserver(entries => {
