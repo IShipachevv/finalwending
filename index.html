@@ -294,16 +294,17 @@
             z-index: 3;
         }
 
-        .hero h1,
-        .hero-date {
+        .pencil-title,
+        .pencil-date {
             font-family: 'Caveat', cursive;
             color: #4f4845;
             mix-blend-mode: multiply;
             text-transform: none;
+            margin: 0;
+            filter: url(#pencil-grain);
         }
 
-        .hero h1 {
-            margin: 0 0 8px 0;
+        .pencil-title {
             font-size: 4rem;
             font-weight: 600;
             letter-spacing: 0.06em;
@@ -314,11 +315,9 @@
                 -0.3px 0.4px 0 rgba(110, 102, 98, 0.28),
                 0.8px -0.2px 0 rgba(90, 82, 78, 0.18),
                 0 0 0.6px rgba(70, 64, 60, 0.22);
-            filter: url(#pencil-grain);
         }
 
-        .hero-date {
-            margin: 0;
+        .pencil-date {
             font-size: 1.9rem;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -328,7 +327,32 @@
                 0.4px 0.5px 0 rgba(79, 72, 69, 0.38),
                 -0.2px 0.3px 0 rgba(105, 98, 94, 0.22),
                 0 0 0.5px rgba(75, 68, 64, 0.18);
-            filter: url(#pencil-grain);
+        }
+
+        .hero h1 {
+            margin-bottom: 8px;
+        }
+
+        .place-photo-inscription {
+            position: absolute;
+            top: 5%;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            text-align: center;
+            pointer-events: none;
+            padding: 0 10px;
+        }
+
+        .place-photo-inscription .pencil-title {
+            font-size: clamp(1.15rem, 5.5vw, 1.55rem);
+            margin-bottom: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .place-photo-inscription .pencil-date {
+            font-size: clamp(0.85rem, 3.8vw, 1.05rem);
+            letter-spacing: 0.03em;
         }
 
         .title-serif {
@@ -1069,8 +1093,8 @@
                 </div>
             </div>
             <div class="hero-overlay">
-                <h1>Ilia & Kristina</h1>
-                <p class="hero-date">19 сентября 2026</p>
+                <h1 class="pencil-title">Ilia & Kristina</h1>
+                <p class="pencil-date hero-date">19 сентября 2026</p>
             </div>
         </header>
 
@@ -1172,13 +1196,14 @@
                         <div class="place-slider-track">
                             <div class="place-slide is-active"><img src="sourses/zags_1.jpg" alt="ЗАГС"></div>
                             <div class="place-slide"><img src="sourses/zags_2.jpg" alt="ЗАГС"></div>
+                        
                         </div>
                     </div>
                     <div class="polaroid-footer">
                         <p class="place-name">Дом семейных торжеств</p>
                         <p class="place-address">пр.Мира 24Г</p>
                     </div>
-                    <a class="btn-outline" href="https://2gis.ru/krasnoyarsk/firm/985605639535315" target="_blank" rel="noreferrer">КАРТА</a>
+                    <a class="btn-outline" href="https://2gis.ru/krasnoyarsk/firm/985691699739212/92.886279%2C56.013084?m=92.887488%2C56.012788%2F16.74" target="_blank" rel="noreferrer">КАРТА</a>
                 </div>
 
                 <!-- БАНКЕТ -->
@@ -1186,7 +1211,6 @@
                     <div class="place-slider">
                         <div class="place-slider-track">
                             <div class="place-slide is-active"><img src="sourses/artel_1.jpg" ></div>
-                            <div class="place-slide"><img src="sourses/artel_2.jpg"></div>
                         </div>
                     </div>
                     <div class="polaroid-footer">
@@ -1205,8 +1229,8 @@
             
             <div class="mood-grid">
                 <div class="mood-card"><span>Элегантность<br> и комфорт</span></div>
-                <div class="mood-card"><span>Пастельные<br>тона</span></div>
-                <div class="mood-card"><span>пися<br>попа</span></div>
+                <div class="mood-card"><span>Пастельные<br>оттенки</span></div>
+                <div class="mood-card"><span>Праздничное настроение<br></span></div>
             </div>
         </section>
 
@@ -1222,7 +1246,7 @@
 
                 <div>
                     <div class="detail-label">Вместо цветов</div>
-                    <p class="small-text">Пожалуйста, не дарите нам цветы - лучшим дополнением станут сертификаты в Золотое яблоко</p>
+                    <p class="small-text">Пожалуйста, не дарите нам цветы - лучшим дополнением станет сертификат на развлечения</p>
                 </div>
                 <div class="details-divider"></div>
                 <div>
@@ -1248,11 +1272,51 @@
                 </div>
                 <div class="select-wrapper">
                     <select required>
+                        <option value="" disabled selected>Предпочтения по напиткам</option>
+                        <option>Вино</option>
+                        <option>Игристое</option>
+                        <option>Крепкое</option>
+                        <option>Безолкогольные напитки</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select required>
                         <option value="" disabled selected>Где вас ждать?</option>
                         <option>В ЗАГСе</option>
                         <option>На банкете</option>
                         <option>На всех событиях</option>
                     </select>
+                </div>
+                <div class="select-wrapper">
+                    <select id="allergyType" name="allergyType">
+                        <option value="" disabled selected>У меня аллергия или особенности питания</option>
+                        <option value="none">Нет</option>
+                        <option value="vegetarian">Вегетарианство</option>
+                        <option value="vegan">Веганство</option>
+                        <option value="gluten">Непереносимость глютена</option>
+                        <option value="lactose">Непереносимость лактозы</option>
+                        <option value="nuts">Аллергия на орехи</option>
+                        <option value="seafood">Аллергия на морепродукты</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select id="childrenCount" name="childrenCount">
+                        <option value="" disabled selected>Будете ли вы с детьми?</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да, 1 ребенок</option>
+                        <option value="2">Да, 2 ребенка</option>
+                        <option value="3">Да, 3 ребенка</option>
+                        <option value="4">Да, 4 и более</option>
+                    </select>
+                </div>
+                
+                <div id="otherAllergySection" style="display:none;">
+                    <input
+                        type="text"
+                        id="otherAllergy"
+                        placeholder="Расскажите о ваших предпочтениях или аллергии"
+                    >
                 </div>
                 <button type="submit" class="btn-black">ПОДТВЕРДИТЬ УЧАСТИЕ</button>
             </form>
@@ -1453,19 +1517,21 @@
             setInterval(updateTimer, 1000);
             updateTimer();
 
-            // 4. Слайдеры локаций
-            document.querySelectorAll('.place-slider').forEach(slider => {
-                const slides = slider.querySelectorAll('.place-slide');
-                let cur = 0;
-                if(slides.length > 1) {
-                    setInterval(() => {
-                        slides[cur].classList.remove('is-active');
-                        cur = (cur + 1) % slides.length;
-                        slides[cur].classList.add('is-active');
-                    }, 3500);
-                }
-            });
+            const allergyType = document.getElementById('allergyType');
+const otherAllergySection = document.getElementById('otherAllergySection');
+
+allergyType.addEventListener('change', function () {
+    otherAllergySection.style.display =
+        this.value === 'other' ? 'block' : 'none';
+});
         });
+        const childrenCount = document.getElementById('childrenCount');
+const childrenAgeSection = document.getElementById('childrenAgeSection');
+
+childrenCount.addEventListener('change', function () {
+    childrenAgeSection.style.display =
+        this.value && this.value !== '0' ? 'block' : 'none';
+});
     </script>
 </body>
 </html>
