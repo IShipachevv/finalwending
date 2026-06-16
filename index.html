@@ -1398,6 +1398,23 @@
                         <option>К сожалению, не смогу</option>
                     </select>
                 </div>
+               
+                <div class="select-wrapper">
+                    <select name="events" required>
+                        <option value="" disabled selected>Где вас ждать?</option>
+                        <option>В ЗАГСе</option>
+                        <option>На банкете</option>
+                        <option>На всех событиях</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select id="childrenCount" name="childrenCount">
+                        <option value="" disabled selected>Будут ли с вами дети?</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да, 1 ребенок</option>
+                        <option value="2">Да, 2 ребенка</option>
+                    </select>
+                </div>
                 <div class="drinks-group">
                     <p class="drinks-label">Предпочтения по напиткам (можно выбрать несколько)</p>
                     <label class="check-item"><input type="checkbox" name="drinks" value="Вино красное"><span>Вино красное</span></label>
@@ -1410,24 +1427,7 @@
                     <label class="check-item"><input type="checkbox" name="drinks" value="Безалкогольные напитки"><span>Безалкогольные напитки</span></label>
                     <label class="check-item"><input type="checkbox" name="drinks" value="Другое"><span>Другое</span></label>
                 </div>
-                <div class="select-wrapper">
-                    <select name="events" required>
-                        <option value="" disabled selected>Где вас ждать?</option>
-                        <option>В ЗАГСе</option>
-                        <option>На банкете</option>
-                        <option>На всех событиях</option>
-                    </select>
-                </div>
-                <div class="select-wrapper">
-                    <select id="childrenCount" name="childrenCount">
-                        <option value="" disabled selected>Будете ли вы с детьми?</option>
-                        <option value="0">Нет</option>
-                        <option value="1">Да, 1 ребенок</option>
-                        <option value="2">Да, 2 ребенка</option>
-                        <option value="3">Да, 3 ребенка</option>
-                        <option value="4">Да, 4 и более</option>
-                    </select>
-                </div>
+                <input type="text" id="drinksOther" name="drinksOther" class="hidden-field" placeholder="Уточните, какие напитки">
                 <div class="select-wrapper">
                     <select name="grill" required>
                         <option value="" disabled selected>Шашлыки на второй день</option>
@@ -1645,6 +1645,18 @@ childrenCount.addEventListener('change', function () {
         this.value && this.value !== '0' ? 'block' : 'none';
 });
 
+// Поле "Другое" для напитков
+const drinksOtherCheckbox = document.querySelector('input[name="drinks"][value="Другое"]');
+const drinksOtherInput = document.getElementById('drinksOther');
+drinksOtherCheckbox.addEventListener('change', function () {
+    drinksOtherInput.classList.toggle('hidden-field', !this.checked);
+    if (this.checked) {
+        drinksOtherInput.focus();
+    } else {
+        drinksOtherInput.value = '';
+    }
+});
+
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxD23Ww1gij3EmzcSH5oRZjuxa9XO0Ef7EQCs59l1HY1iLQgnoWJ0taCBFYc90aSmwEKg/exec";
 
 document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
@@ -1652,11 +1664,13 @@ document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
 
   const form = e.target;
   const drinks = [...form.querySelectorAll('input[name="drinks"]:checked')].map(c => c.value);
+  const otherText = (form.querySelector('[name="drinksOther"]').value || '').trim();
+  const drinksList = drinks.map(d => (d === 'Другое' && otherText) ? otherText : d);
 
   const formData = {
     name: form.querySelector('[name="guestName"]').value,
     presence: form.querySelector('[name="presence"]').value,
-    drinks: drinks.join(', '),
+    drinks: drinksList.join(', '),
     events: form.querySelector('[name="events"]').value,
     children: form.querySelector('[name="childrenCount"]').value,
     grill: form.querySelector('[name="grill"]').value
