@@ -305,7 +305,7 @@
         }
 
         .pencil-title {
-            font-size: 4rem;
+            font-size: clamp(2.6rem, 13vw, 4rem);
             font-weight: 600;
             letter-spacing: 0.06em;
             line-height: 1.05;
@@ -318,7 +318,7 @@
         }
 
         .pencil-date {
-            font-size: 1.9rem;
+            font-size: clamp(1.3rem, 6vw, 1.9rem);
             font-weight: 500;
             letter-spacing: 0.05em;
             opacity: 0.92;
@@ -751,6 +751,7 @@
 
         .mood-card {
             aspect-ratio: 3 / 4;
+            min-width: 0;
             border-radius: 10px;
             display: flex;
             align-items: flex-end;
@@ -1024,7 +1025,32 @@
         .hidden-field, .hidden-frame {
             display: none !important;
         }
-    </style>
+
+        /* АДАПТИВ ПОД УЗКИЕ ЭКРАНЫ */
+        @media (max-width: 360px) {
+            .section,
+            .calendar-section {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .mood-grid {
+                gap: 8px;
+            }
+            .mood-card {
+                font-size: 0.72rem;
+                padding: 10px 4px;
+            }
+            .countdown-grid {
+                gap: 7px;
+            }
+            .countdown-value {
+                font-size: 1.05rem;
+            }
+            .calendar-date {
+                font-size: 2.4rem;
+            }
+        }
+</style>
 </head>
 <body>
 
@@ -1152,7 +1178,7 @@
             <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 3.2rem; text-transform: none; letter-spacing: 0;">Во сколько?</h2>
             <div class="timing-list">
                 <svg class="timing-route" viewBox="0 0 86 520">
-                    <path class="timing-route-line" d="M43 0 C82 42 80 96 44 140 C10 181 8 232 43 276 C82 326 76 386 42 434 C26 457 25 484 43 514" />
+                    <path class="timing-route-line" d="M43 0 C60 20 62 48 43 72 C8 130 8 210 43 273 C80 330 80 405 43 461 C26 480 62 500 43 514" />
                 </svg>
 
                 <div class="timing-row timing-row-left">
@@ -1161,7 +1187,7 @@
                         <p>Регистрация брака в Доме семейных торжеств. Рекомендуем прийти заранее</p>
                     </div>
                     <div class="timing-icon">
-                        <svg viewBox="0 0 48 48"><path d="M19 25c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/><path d="M29 20c-7 0-12 4-12 9s5 9 12 9 12-4 12-9-5-9-12-9Z"/></svg>
+                        <svg viewBox="0 0 48 48"><g transform="rotate(-22 24 24)"><path d="M8,24 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"/><path d="M20,24 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"/></g></svg>
                     </div>
                 </div>
 
