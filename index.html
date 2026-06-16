@@ -1313,19 +1313,6 @@
                     </select>
                 </div>
                 <div class="select-wrapper">
-                    <select id="allergyType" name="allergyType">
-                        <option value="" disabled selected>У меня аллергия или особенности питания</option>
-                        <option value="none">Нет</option>
-                        <option value="vegetarian">Вегетарианство</option>
-                        <option value="vegan">Веганство</option>
-                        <option value="gluten">Непереносимость глютена</option>
-                        <option value="lactose">Непереносимость лактозы</option>
-                        <option value="nuts">Аллергия на орехи</option>
-                        <option value="seafood">Аллергия на морепродукты</option>
-                        <option value="other">Другое</option>
-                    </select>
-                </div>
-                <div class="select-wrapper">
                     <select id="childrenCount" name="childrenCount">
                         <option value="" disabled selected>Будете ли вы с детьми?</option>
                         <option value="0">Нет</option>
@@ -1344,13 +1331,6 @@
                     </select>
                 </div>
                 
-                <div id="otherAllergySection" style="display:none;">
-                    <input
-                        type="text"
-                        id="otherAllergy"
-                        placeholder="Расскажите о ваших предпочтениях или аллергии"
-                    >
-                </div>
                 <button type="submit" class="btn-black">ПОДТВЕРДИТЬ УЧАСТИЕ</button>
             </form>
         </section>
@@ -1550,13 +1530,6 @@
             setInterval(updateTimer, 1000);
             updateTimer();
 
-            const allergyType = document.getElementById('allergyType');
-const otherAllergySection = document.getElementById('otherAllergySection');
-
-allergyType.addEventListener('change', function () {
-    otherAllergySection.style.display =
-        this.value === 'other' ? 'block' : 'none';
-});
         });
         const childrenCount = document.getElementById('childrenCount');
 const childrenAgeSection = document.getElementById('childrenAgeSection');
@@ -1576,9 +1549,8 @@ document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
     presence: e.target[1].value,
     drinks: e.target[2].value,
     events: e.target[3].value,
-    allergy: e.target[4].value,
-    children: e.target[5].value,
-    grill: e.target[6].value
+    children: e.target[4].value,
+    grill: e.target[5].value
   };
 
   fetch(SCRIPT_URL, {
