@@ -870,6 +870,72 @@
             -webkit-appearance: none;
         }
 
+        /* Группа чекбоксов (напитки) */
+        .drinks-group {
+            background: #ffffff;
+            border: 1px solid rgba(143, 107, 91, 0.12);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 8px 6px;
+            text-align: left;
+        }
+
+        .drinks-label {
+            margin: 8px 14px 8px;
+            font-size: 0.8rem;
+            color: #7a6e67;
+            letter-spacing: 0.03em;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            transition: background 0.2s ease;
+        }
+
+        .check-item:hover {
+            background: var(--gray-light);
+        }
+
+        .check-item input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+            border: 1.5px solid var(--accent-soft);
+            border-radius: 6px;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .check-item input:checked {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .check-item input:checked::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid #ffffff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
         .btn-black {
             background: #2f241f;
             color: #ffffff;
@@ -1310,9 +1376,10 @@
                     <div class="detail-label">Формат вечера</div>
                     <p class="small-text">Мы будем рады вам и вашим детям, но просим принять во внимание, что площадка не позволяет организовать досуг для детей и обеспечить безопасное пространство для них</p>
                 </div> 
+                <div class="details-divider"></div>
                 <div>
                     <div class="detail-label">Если остались вопросы</div>
-                    <p class="small-text">По всем вопросам вы можете обратиться к нашему организатору Анастасии - +7 902 921 03 53 </p>
+                    <p class="small-text">По всем вопросам вы можете обратиться к нашему организатору Анастасии <br> +7 902 921 03 53 </p>
                 </div>
                
             </div>
@@ -1323,25 +1390,28 @@
             <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Анкета</h2>
             <p class="small-text text-center">Пожалуйста, подтвердите присутствие до 20 августа</p>
             <form class="rsvp-form">
-                <input type="text" placeholder="Ваше Имя и Фамилия" required>
+                <input type="text" name="guestName" placeholder="Ваше Имя и Фамилия" required>
                 <div class="select-wrapper">
-                    <select required>
+                    <select name="presence" required>
                         <option value="" disabled selected>Придете ли вы?</option>
                         <option>Да, с радостью</option>
                         <option>К сожалению, не смогу</option>
                     </select>
                 </div>
-                <div class="select-wrapper">
-                    <select required>
-                        <option value="" disabled selected>Предпочтения по напиткам</option>
-                        <option>Вино</option>
-                        <option>Игристое</option>
-                        <option>Крепкое</option>
-                        <option>Безолкогольные напитки</option>
-                    </select>
+                <div class="drinks-group">
+                    <p class="drinks-label">Предпочтения по напиткам (можно выбрать несколько)</p>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Вино красное"><span>Вино красное</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Вино белое"><span>Вино белое</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Шампанское"><span>Шампанское</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Водка"><span>Водка</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Коньяк"><span>Коньяк</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Самогон"><span>Самогон</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Вермут"><span>Вермут</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Безалкогольные напитки"><span>Безалкогольные напитки</span></label>
+                    <label class="check-item"><input type="checkbox" name="drinks" value="Другое"><span>Другое</span></label>
                 </div>
                 <div class="select-wrapper">
-                    <select required>
+                    <select name="events" required>
                         <option value="" disabled selected>Где вас ждать?</option>
                         <option>В ЗАГСе</option>
                         <option>На банкете</option>
@@ -1359,7 +1429,7 @@
                     </select>
                 </div>
                 <div class="select-wrapper">
-                    <select required>
+                    <select name="grill" required>
                         <option value="" disabled selected>Шашлыки на второй день</option>
                         <option>Я буду</option>
                         <option>Нет, спасибо</option>
@@ -1579,14 +1649,17 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxD23Ww1gij3EmzcSH5o
 
 document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
   e.preventDefault();
-  
+
+  const form = e.target;
+  const drinks = [...form.querySelectorAll('input[name="drinks"]:checked')].map(c => c.value);
+
   const formData = {
-    name: e.target[0].value,
-    presence: e.target[1].value,
-    drinks: e.target[2].value,
-    events: e.target[3].value,
-    children: e.target[4].value,
-    grill: e.target[5].value
+    name: form.querySelector('[name="guestName"]').value,
+    presence: form.querySelector('[name="presence"]').value,
+    drinks: drinks.join(', '),
+    events: form.querySelector('[name="events"]').value,
+    children: form.querySelector('[name="childrenCount"]').value,
+    grill: form.querySelector('[name="grill"]').value
   };
 
   fetch(SCRIPT_URL, {
