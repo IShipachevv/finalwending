@@ -741,36 +741,10 @@
             transform: scale(1.2);
         }
 
-        /* Дресс-код: росчерки, рамка с силуэтами, стиль вечера */
+        /* Дресс-код: рамка с силуэтами костюма и платья */
         .dresscode-section {
-            position: relative;
-            overflow: hidden;
-            padding-bottom: 34px;
+            padding-bottom: 30px;
         }
-
-        .dresscode-scatter {
-            position: absolute;
-            inset: 0;
-            z-index: 0 !important;
-            pointer-events: none;
-        }
-
-        .dresscode-scatter span {
-            position: absolute;
-            font-family: 'Caveat', cursive;
-            color: var(--accent);
-            white-space: nowrap;
-            font-weight: 600;
-            mix-blend-mode: multiply;
-        }
-
-        .dc-s1 { top: 60px;  left: -8px;  transform: rotate(-13deg); font-size: 1.35rem; opacity: .20; }
-        .dc-s2 { top: 96px;  left: 150px; transform: rotate(-6deg);  font-size: 1.7rem;  opacity: .16; }
-        .dc-s3 { top: 150px; left: 18px;  transform: rotate(-9deg);  font-size: 1.2rem;  opacity: .18; }
-        .dc-s4 { top: 300px; left: 170px; transform: rotate(-11deg); font-size: 1.5rem;  opacity: .16; }
-        .dc-s5 { top: 360px; left: -12px; transform: rotate(-7deg);  font-size: 1.25rem; opacity: .18; }
-        .dc-s6 { top: 250px; left: 60px;  transform: rotate(-15deg); font-size: 1.1rem;  opacity: .13; }
-        .dc-s7 { top: 30px;  left: 250px; transform: rotate(-14deg); font-size: 1.15rem; opacity: .14; }
 
         .dresscode-frame {
             position: relative;
@@ -1290,16 +1264,6 @@
 
         <!-- ДРЕСС-КОД -->
         <section class="section gray-bg reveal dresscode-section">
-            <div class="dresscode-scatter" aria-hidden="true">
-                <span class="dc-s1">dress code</span>
-                <span class="dc-s2">dress code</span>
-                <span class="dc-s3">dress code</span>
-                <span class="dc-s4">dress code</span>
-                <span class="dc-s5">dress code</span>
-                <span class="dc-s6">dress code</span>
-                <span class="dc-s7">dress code</span>
-            </div>
-
             <h2 class="title-serif text-center" style="font-family: 'Marck Script', cursive; font-size: 2.2rem; text-transform: none; letter-spacing: 0;">Дресс-код</h2>
 
             <div class="dresscode-frame">
