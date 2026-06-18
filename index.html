@@ -1657,6 +1657,19 @@ drinksOtherCheckbox.addEventListener('change', function () {
     }
 });
 
+// При отказе ("К сожалению, не смогу") остальные поля не обязательны
+const presenceSelect = document.querySelector('select[name="presence"]');
+const conditionalRequired = ['events', 'grill'];
+function updateRequiredByPresence() {
+    const declining = presenceSelect.value === 'К сожалению, не смогу';
+    conditionalRequired.forEach(name => {
+        const field = document.querySelector('[name="' + name + '"]');
+        if (field) field.required = !declining;
+    });
+}
+presenceSelect.addEventListener('change', updateRequiredByPresence);
+updateRequiredByPresence();
+
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxD23Ww1gij3EmzcSH5oRZjuxa9XO0Ef7EQCs59l1HY1iLQgnoWJ0taCBFYc90aSmwEKg/exec";
 
 document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
